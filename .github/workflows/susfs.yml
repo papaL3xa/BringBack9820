@@ -1,4 +1,5 @@
-name: Kernel Build (SuSFS) 
+name: Kernel Test (SUSFS)
+run-name: 'Test: BringBack for ${{ github.event.inputs.MODEL }}_v.${{ github.event.inputs.version }}_SUSFS'
 
 on:
   workflow_dispatch:
@@ -7,6 +8,7 @@ on:
         description: 'Choose Your Device'
         required: true
         type: choice
+        default: 'N970F'
         options:
           - G970F
           - G970N
@@ -21,16 +23,24 @@ on:
           - N975F
           - N976B
           - N976N
+      version:
+        description: 'Kernel Version'
+        required: true
+        default: ''
 
 jobs:
   build:
     runs-on: ubuntu-latest 
 
     steps:
-    - name: 1. import kernel source
+    - name: Update kernel source
       uses: actions/checkout@v4       
-        
-    - name: 2. install package
+
+    - name: Set Time Zone to Asia
+      run: |
+        sudo timedatectl set-timezone "Asia/Singapore"
+
+    - name: Install Environemental package
       run: |
         sudo apt-get update
         sudo apt-get install -y \
@@ -41,19 +51,22 @@ jobs:
           gcc clang
         wget http://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.3-2ubuntu0.1_amd64.deb && sudo dpkg -i libtinfo5_6.3-2ubuntu0.1_amd64.deb   
 
-    - name: 3. setting permission
-      run: chmod +x build.sh
-
-    - name: 4. kernel build
+    - name: Set build Environment
       run: |
-        echo "Starting build for ${{ github.event.inputs.MODEL }}_SuSFS_Kernel File"
-    
-        ./build.sh "${{ github.event.inputs.MODEL }}"
+        echo "BUILD_KERNEL_VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+
+    - name: Kernel build
+      run: |
+        chmod +x build.sh
+        echo "📋 Kernel version: ${{ env.BUILD_KERNEL_VERSION }}"
         
-    - name: 5. Upload Artifacts Kernel File
+        # Kirim kedua parameter: model dan version
+        ./build.sh -m "${{ github.event.inputs.MODEL }}" -v "${{ env.BUILD_KERNEL_VERSION }}"
+        
+    - name: Upload Artifacts Kernel File
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ github.event.inputs.MODEL }}_SuSFS
+        name: BringBack_${{ github.event.inputs.MODEL }}_${{ github.event.inputs.version }}_SUSFS
         path: |
-          gorhanhee/*.zip  
-          gorhanhee/*.tar   
+          BringBack/*.zip  
+          BringBack/*.tar
