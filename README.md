@@ -1,9 +1,9 @@
 ![LOGO](./prebuilts/logo.png)
-# GoRhanHee Kernel for Samsung Exynos 9820 Stock Rom 
+# This's BringBack base from our great GoRhanHee Kernel for Samsung Exynos 9820 Stock Rom 
 
 An optimized stock-based kernel for Samsung Galaxy S10 series (Exynos 9820) with integrated **KernelSU** and **Ramdisk** support.
 
-## 🌟 What is the GoRhanHee Kernel for exynos9820?
+## 🌟 What is the BringBack Kernel for exynos9820?
 This project provides a modified version of the official Samsung stock kernel. It is specifically designed for users who want to maintain the stability of the Stock ROM while gaining advanced root capabilities through KernelSU. And, There was a problem with losing the root(SU) after rebooting, which was a problem with the existing Galaxy 10 series. This is because the stock kernel did not have ramdisk. As a result, the GoRhanHee kernel had ramdisk.
 
 ## 🚀 Features
@@ -31,7 +31,7 @@ This kernel is compatible with the following Exynos 9820/9825 models:
 ### 🟢 Local Build
 1. **Clone the repository:**
    ```bash
-   git clone --depth=1 https://github.com/GoRhanHee/android_kernel_samsung_exynos9820.git
+   git clone --depth=1 https://github.com/papaL3xa/BringBack9820.git
    ```
 2. **Setting permission:**   
    ```bash
@@ -78,4 +78,4 @@ This kernel is compatible with the following Exynos 9820/9825 models:
 
 * [ravindu644's Kernel](https://github.com/ravindu644/samsung_exynos9820_stock)
 
-* [GoRhanHee](https://github.com/GoRhanHee) : GorhanHee Kernel Developer
+* [GoRhanHee](https://github.com/GoRhanHee) : Our Great GorhanHee Kernel Developer
