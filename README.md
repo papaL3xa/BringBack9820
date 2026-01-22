@@ -1,4 +1,4 @@
-![LOGO](./prebuilts/logo.png)
+![LOGO]()
 # This's BringBack base from our great GoRhanHee Kernel for Samsung Exynos 9820 Stock Rom 
 
 An optimized stock-based kernel for Samsung Galaxy S10 series (Exynos 9820) with integrated **KernelSU** and **Ramdisk** support.
